@@ -1,1 +1,61 @@
+<!doctype html> 
+	<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+	<title>Phaser - Making your first game, part 1</titl
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+	<script type="text/javascript" src="game.js"></script> 
+    <style type="text/css">
+        body {
+            margin: 0;
         }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+var game = new Phaser.Game(900, 800, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+
+function preload() {
+	game.load.image('image','assets/image.png');
+	game.load.image('bulle','assets/bulle.png');
+	game.load.image('statue','assets/statue.png');
+	}
+
+var sprite;
+var bounds;
+
+function create() {
+	game.physics.startSystem(Phaser.Physics.ARCADE);
+	
+	game.world.setBounds(0, 0, 900, 700);
+	
+	game.add.sprite(0,0,'image');
+	
+	    game.stage.backgroundColor = '#2d2d2d';
+
+    //  Our sprite that will act as the drag bounds
+    bounds = game.add.sprite(game.world.centerX, game.world.centerY, 'bulle');
+    bounds.alpha = 0.5;
+    bounds.anchor.set(0.5);
+
+    //  And the sprite we'll drag
+    sprite = game.add.sprite(300, 300, 'image');
+    sprite.inputEnabled = true;
+    sprite.anchor.set(0.5);
+
+    sprite.input.enableDrag();
+    sprite.input.boundsSprite = bounds;
+	console.log('ressource');
+}
+
+function update() {
+
+}
+	}
+
+</script>
+
+</body>
+</html>
